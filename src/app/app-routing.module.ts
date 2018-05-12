@@ -7,6 +7,10 @@ const appRoutes: Routes = [
     pathMatch: 'full',
     loadChildren: './landing-page/landing-page.module#LandingPageModule'
   },
+  {
+    path: 'results',
+    loadChildren: './results/results.module#ResultsModule'
+  },
   { path: '**', redirectTo: '' }
 ];
 
