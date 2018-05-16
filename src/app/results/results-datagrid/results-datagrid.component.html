@@ -1,0 +1,22 @@
+<clr-datagrid>
+  <clr-dg-column>Month</clr-dg-column>
+  <clr-dg-column>Amount</clr-dg-column>
+  <clr-dg-column>Completion</clr-dg-column>
+  <clr-dg-column>Forcasted amount</clr-dg-column>
+  <clr-dg-column>Forcasted completion</clr-dg-column>
+
+  <clr-dg-row *ngFor="let month of months; let i = index">
+    <clr-dg-cell>{{ month.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ month.amount | currency:'PLN':'symbol' }}</clr-dg-cell>
+    <clr-dg-cell>{{ (month.amount / monthlyGoal) | percent:'1.2-2' }}</clr-dg-cell>
+    <clr-dg-cell>{{ forcastedAmount(month, i) | currency:'PLN':'symbol' }}</clr-dg-cell>
+    <clr-dg-cell>{{ (forcastedAmount(month, i) / monthlyGoal) | percent:'1.2-2' }}</clr-dg-cell>
+  </clr-dg-row>
+  <clr-dg-row>
+    <clr-dg-cell>Sum</clr-dg-cell>
+    <clr-dg-cell>{{ amountSum() | currency:'PLN':'symbol' }}</clr-dg-cell>
+    <clr-dg-cell>{{ (amountSum() / goal.amount) | percent:'1.2-2' }}</clr-dg-cell>
+    <clr-dg-cell>{{ forecastedAmountSum() | currency:'PLN':'symbol' }}</clr-dg-cell>
+    <clr-dg-cell>{{ (forecastedAmountSum() / goal.amount) | percent:'1.2-2' }}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
