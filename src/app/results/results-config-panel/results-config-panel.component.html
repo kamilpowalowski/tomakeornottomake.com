@@ -1,0 +1,58 @@
+<form #resultForm="ngForm">
+  <section class="form-block">
+    <div class="row">
+      <div class="col-xs-10 offset-xs-1">
+        <label>Set your results</label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xs-11 offset-xs-1">
+        <label for="amountInput">Total amount:</label>
+        <input type="number" placeholder="Total amount" id="amountInput" required name="amountInput" [(ngModel)]="amount" #amountInput="ngModel">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xs-8 offset-xs-1">
+        <label for="currencySelect">Currency:</label>
+        <div class="select">
+          <select id="currencySelect" [(ngModel)]="currency" name="currencySelect" #currencySelect="ngModel">
+            <option>USD</option>
+            <option>PLN</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xs-11 offset-xs-1">
+        <label for="monthsInput">Months:</label>
+        <input type="number" placeholder="Months" id="monthsInput" required name="monthsInput" [(ngModel)]="months" #monthsInput="ngModel">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xs-8 offset-xs-1">
+        <label for="startMonthSelect">Starting month:</label>
+        <div class="select">
+          <select id="startMonthSelect" [(ngModel)]="startingMonth" name="startMonthSelect" #startMonthSelect="ngModel">
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xs-11 offset-xs-1">
+        <button class="btn btn-primary" type="submit" [disabled]="resultForm.form.invalid">Apply changes</button>
+      </div>
+    </div>
+  </section>
+</form>
