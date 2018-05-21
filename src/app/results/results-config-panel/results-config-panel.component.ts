@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+  } from '@angular/core';
+import { Config } from '../models/config.model';
 
 @Component({
   selector: 'app-results-config-panel',
@@ -7,14 +14,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultsConfigPanelComponent implements OnInit {
 
-  amount = 36000;
-  months = 12;
-  startingMonth = 'January';
-  currency = 'PLN';
+  @Input() amount = 36000;
+  @Input() months = 12;
+  @Input() startingMonth = new Date().getMonth();
+  @Input() startingYear = new Date().getFullYear();
+  @Input() currency = 'PLN';
+
+  @Output() config = new EventEmitter<Config>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    const config = new Config(
+      this.amount,
+      this.currency,
+      this.months,
+      +this.startingMonth,
+      +this.startingYear
+    );
+    this.config.emit(config);
   }
 
 }

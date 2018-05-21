@@ -9,15 +9,15 @@
       <clr-dg-cell>
         <input type="number" class="form-control" [(ngModel)]="month.amount">
       </clr-dg-cell>
-      <clr-dg-cell>{{ (month.amount / monthlyGoal) | percent:'1.2-2' }}</clr-dg-cell>
-      <clr-dg-cell>{{ forcastedAmount(month, i) | currency:'PLN':'symbol' }}</clr-dg-cell>
-      <clr-dg-cell>{{ (forcastedAmount(month, i) / monthlyGoal) | percent:'1.2-2' }}</clr-dg-cell>
+      <clr-dg-cell>{{ (month.amount / monthlyGoal()) | percent:'1.2-2' }}</clr-dg-cell>
+      <clr-dg-cell>{{ forcastedAmount(month, i) | currency:goal.currency:'symbol' }}</clr-dg-cell>
+      <clr-dg-cell>{{ (forcastedAmount(month, i) / monthlyGoal()) | percent:'1.2-2' }}</clr-dg-cell>
     </clr-dg-row>
     <clr-dg-row class="footer">
       <clr-dg-cell>Sum</clr-dg-cell>
-      <clr-dg-cell>{{ amountSum() | currency:'PLN':'symbol' }}</clr-dg-cell>
+      <clr-dg-cell>{{ amountSum() | currency:goal.currency:'symbol' }}</clr-dg-cell>
       <clr-dg-cell>{{ (amountSum() / goal.amount) | percent:'1.2-2' }}</clr-dg-cell>
-      <clr-dg-cell>{{ forecastedAmountSum() | currency:'PLN':'symbol' }}</clr-dg-cell>
+      <clr-dg-cell>{{ forecastedAmountSum() | currency:goal.currency:'symbol' }}</clr-dg-cell>
       <clr-dg-cell>{{ (forecastedAmountSum() / goal.amount) | percent:'1.2-2' }}</clr-dg-cell>
     </clr-dg-row>
   </clr-datagrid>

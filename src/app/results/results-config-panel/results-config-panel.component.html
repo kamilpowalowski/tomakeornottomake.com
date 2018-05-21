@@ -8,12 +8,16 @@
     <div class="form-group row">
       <div class="col-xs-11 offset-xs-1">
         <label for="amountInput">Total amount:</label>
-        <input type="number" placeholder="Total amount" id="amountInput" required name="amountInput" [(ngModel)]="amount" #amountInput="ngModel">
+        <div>
+          <input type="number" placeholder="Total amount" id="amountInput" required name="amountInput" [(ngModel)]="amount" #amountInput="ngModel">
+        </div>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-xs-8 offset-xs-1">
         <label for="currencySelect">Currency:</label>
+      </div>
+      <div class="col-xs-4 offset-xs-1">
         <div class="select">
           <select id="currencySelect" [(ngModel)]="currency" name="currencySelect" #currencySelect="ngModel">
             <option>USD</option>
@@ -25,33 +29,46 @@
     <div class="form-group row">
       <div class="col-xs-11 offset-xs-1">
         <label for="monthsInput">Months:</label>
-        <input type="number" placeholder="Months" id="monthsInput" required name="monthsInput" [(ngModel)]="months" #monthsInput="ngModel">
+        <div>
+          <input type="number" placeholder="Months" id="monthsInput" required name="monthsInput" [(ngModel)]="months" #monthsInput="ngModel">
+        </div>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-xs-8 offset-xs-1">
         <label for="startMonthSelect">Starting month:</label>
+      </div>
+      <div class="offset-xs-1 col-xs-5">
         <div class="select">
           <select id="startMonthSelect" [(ngModel)]="startingMonth" name="startMonthSelect" #startMonthSelect="ngModel">
-            <option>January</option>
-            <option>February</option>
-            <option>March</option>
-            <option>April</option>
-            <option>May</option>
-            <option>June</option>
-            <option>July</option>
-            <option>August</option>
-            <option>September</option>
-            <option>October</option>
-            <option>November</option>
-            <option>December</option>
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="select">
+          <select id="startYearSelect" [(ngModel)]="startingYear" name="startYearSelect" #startYearSelect="ngModel">
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
           </select>
         </div>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-xs-11 offset-xs-1">
-        <button class="btn btn-primary" type="submit" [disabled]="resultForm.form.invalid">Apply changes</button>
+        <button class="btn btn-primary" type="submit" [disabled]="resultForm.form.invalid" (click)="onSubmit()">Apply changes</button>
       </div>
     </div>
   </section>

@@ -1,6 +1,6 @@
+import { Component, Input, OnInit } from '@angular/core';
 import { Goal } from './../models/goal.model';
 import { Month } from './../models/month.model';
-import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-results-datagrid',
@@ -12,12 +12,12 @@ export class ResultsDatagridComponent implements OnInit {
   @Input() goal: Goal;
   @Input() months: Month[];
 
-  monthlyGoal: number;
-
   constructor() { }
 
-  ngOnInit() {
-    this.monthlyGoal = this.goal.amount / this.goal.length;
+  ngOnInit() { }
+
+  monthlyGoal(): number {
+    return this.goal.amount / this.goal.length;
   }
 
   forcastedAmount(month: Month, index: number): number {
@@ -30,7 +30,7 @@ export class ResultsDatagridComponent implements OnInit {
       .filter(element => element.amount);
 
     if (notEmptySlicedMonths.length === 0) {
-      return this.monthlyGoal;
+      return this.monthlyGoal();
     }
 
     const previousMonthSum = notEmptySlicedMonths
