@@ -6,6 +6,7 @@ import {
   Output
   } from '@angular/core';
 import { Config } from '../models/config.model';
+import { Currencies } from './../models/currencies.model';
 
 @Component({
   selector: 'app-results-config-panel',
@@ -18,9 +19,11 @@ export class ResultsConfigPanelComponent implements OnInit {
   @Input() months = 12;
   @Input() startingMonth = new Date().getMonth();
   @Input() startingYear = new Date().getFullYear();
-  @Input() currency = 'PLN';
+  @Input() currency = 'USD';
 
   @Output() config = new EventEmitter<Config>();
+
+  currencies = Currencies.values.sort();
 
   constructor() { }
 

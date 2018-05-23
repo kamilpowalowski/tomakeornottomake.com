@@ -12,7 +12,8 @@
       <app-results-datagrid [goal]="goal" [months]="months"></app-results-datagrid>
     </div>
     <nav class="sidenav">
-      <app-results-config-panel (config)="onConfig($event)"></app-results-config-panel>
+      <app-results-config-panel [amount]="goal.amount" [currency]="goal.currency" [months]="goal.months" [startingMonth]="goal.startingMonth"
+        [startingYear]="goal.startingYear" (config)="onConfig($event)"></app-results-config-panel>
     </nav>
   </div>
 </div>

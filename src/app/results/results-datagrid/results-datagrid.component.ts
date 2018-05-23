@@ -17,7 +17,7 @@ export class ResultsDatagridComponent implements OnInit {
   ngOnInit() { }
 
   monthlyGoal(): number {
-    return this.goal.amount / this.goal.length;
+    return this.goal.amount / this.goal.months;
   }
 
   forcastedAmount(month: Month, index: number): number {

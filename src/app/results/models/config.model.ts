@@ -6,4 +6,14 @@ export class Config {
     public startingMonth: number,
     public startingYear: number
   ) { }
+
+  static default(): Config {
+    return new Config(
+      36000,
+      'USD',
+      12,
+      new Date().getMonth(),
+      new Date().getFullYear()
+    );
+  }
 }
