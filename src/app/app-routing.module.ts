@@ -8,8 +8,8 @@ const appRoutes: Routes = [
     loadChildren: './landing-page/landing-page.module#LandingPageModule'
   },
   {
-    path: 'results',
-    loadChildren: './results/results.module#ResultsModule'
+    path: 'savings',
+    loadChildren: './savings/savings.module#SavingsModule'
   },
   { path: '**', redirectTo: '' }
 ];

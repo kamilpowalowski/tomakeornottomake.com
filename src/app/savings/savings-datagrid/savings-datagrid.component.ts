@@ -3,11 +3,11 @@ import { Goal } from './../models/goal.model';
 import { Month } from './../models/month.model';
 
 @Component({
-  selector: 'app-results-datagrid',
-  templateUrl: './results-datagrid.component.html',
-  styleUrls: ['./results-datagrid.component.scss']
+  selector: 'app-savings-datagrid',
+  templateUrl: './savings-datagrid.component.html',
+  styleUrls: ['./savings-datagrid.component.scss']
 })
-export class ResultsDatagridComponent implements OnInit {
+export class SavingsDatagridComponent implements OnInit {
 
   @Input() goal: Goal;
   @Input() months: Month[];

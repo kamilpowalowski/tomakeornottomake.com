@@ -9,11 +9,11 @@ import { Config } from '../models/config.model';
 import { Currencies } from './../models/currencies.model';
 
 @Component({
-  selector: 'app-results-config-panel',
-  templateUrl: './results-config-panel.component.html',
-  styleUrls: ['./results-config-panel.component.scss']
+  selector: 'app-savings-config-panel',
+  templateUrl: './savings-config-panel.component.html',
+  styleUrls: ['./savings-config-panel.component.scss']
 })
-export class ResultsConfigPanelComponent implements OnInit {
+export class SavingsConfigPanelComponent implements OnInit {
 
   @Input() amount = 36000;
   @Input() months = 12;

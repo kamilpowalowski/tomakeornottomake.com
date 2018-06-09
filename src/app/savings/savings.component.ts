@@ -5,11 +5,11 @@ import { Month } from './models/month.model';
 import { Months } from './models/months.model';
 
 @Component({
-  selector: 'app-results',
-  templateUrl: './results.component.html',
-  styleUrls: ['./results.component.scss']
+  selector: 'app-savings',
+  templateUrl: './savings.component.html',
+  styleUrls: ['./savings.component.scss']
 })
-export class ResultsComponent implements OnInit {
+export class SavingsComponent implements OnInit {
 
   goal: Goal;
 
