@@ -11,6 +11,10 @@ const appRoutes: Routes = [
     path: 'savings',
     loadChildren: './savings/savings.module#SavingsModule'
   },
+  {
+    path: 'countdowns',
+    loadChildren: './countdowns/countdowns.module#CountdownsModule'
+  },
   { path: '**', redirectTo: '' }
 ];
 
