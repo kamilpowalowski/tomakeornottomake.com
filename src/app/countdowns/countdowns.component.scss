@@ -1,0 +1,47 @@
+.image {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top right;
+    transition: opacity 0.5s;
+}
+
+.background {
+    @extend .image;
+    background-image: url("../../assets/countdowns/countdowns-background.jpg");
+}
+
+.expanded {
+    @extend .image;
+    background-image: url("../../assets/countdowns/countdowns-expanded.png");
+}
+
+.preferences {
+    @extend .image;
+    background-image: url("../../assets/countdowns/countdowns-preferences.png");
+}
+
+.preferences-expanded {
+    @extend .image;
+    background-image: url("../../assets/countdowns/countdowns-preferences-expanded.png");
+}
+
+.info {
+  position: fixed;
+  top: 30%;
+  left: 5%;
+  right: 5%;
+  h1 {
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px black;
+  }
+  .p1 {
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px black;
+  }
+}
