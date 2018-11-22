@@ -9,7 +9,7 @@
       <div class="col-xs-11 offset-xs-1">
         <label for="amountInput">Goal amount:</label>
         <div>
-          <input type="number" placeholder="Total amount" id="amountInput" required name="amountInput" [(ngModel)]="amount" #amountInput="ngModel">
+          <input type="number" placeholder="Total amount" id="amountInput" required name="amountInput" [(ngModel)]="amount" #amountInput="ngModel" min="1">
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
       <div class="col-xs-11 offset-xs-1">
         <label for="monthsInput">Months:</label>
         <div>
-          <input type="number" placeholder="Months" id="monthsInput" required name="monthsInput" [(ngModel)]="months" #monthsInput="ngModel">
+          <input type="number" placeholder="Months" id="monthsInput" required name="monthsInput" [(ngModel)]="months" #monthsInput="ngModel" min="1" max="36">
         </div>
       </div>
     </div>

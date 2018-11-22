@@ -31,10 +31,12 @@ export class SavingsConfigPanelComponent implements OnInit {
   }
 
   onSubmit() {
+    const amount = Math.max(1, this.amount);
+    const months = Math.min(36, Math.max(1, this.months));
     const config = new Config(
-      this.amount,
+      amount,
       this.currency,
-      this.months,
+      months,
       +this.startingMonth,
       +this.startingYear
     );
