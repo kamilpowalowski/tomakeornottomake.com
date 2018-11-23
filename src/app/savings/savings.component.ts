@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { v4 as uuid } from 'uuid';
 import { Config } from './models/config.model';
 import { Goal } from './models/goal.model';
 import { Month } from './models/month.model';
@@ -22,10 +23,15 @@ export class SavingsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private savingsService: SavingsService
   ) { }
 
   ngOnInit() {
+    if (this.route.snapshot.params['path'] === undefined) {
+      this.router.navigate(['savings', uuid()]);
+      return;
+    }
     this.refreshConfig(Config.default());
   }
 
