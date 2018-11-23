@@ -1,7 +1,7 @@
 <div class="main-container">
   <header class="header-6">
     <div class="branding">
-      <a href="/savings" class="nav-link">
+      <a [routerLink]="" class="nav-link">
         <clr-icon shape="piggy-bank"></clr-icon>
         <span class="title">Savings</span>
       </a>
@@ -9,11 +9,12 @@
   </header>
   <div class="content-container">
     <div class="content-area">
+      <app-savings-info-header [message]="message" [type]="messageType"></app-savings-info-header>
       <app-savings-datagrid [goal]="goal" [months]="months"></app-savings-datagrid>
     </div>
     <nav class="sidenav">
-      <app-savings-config-panel [amount]="goal.amount" [currency]="goal.currency" [months]="goal.months" [startingMonth]="goal.startingMonth"
-        [startingYear]="goal.startingYear" (config)="onConfig($event)"></app-savings-config-panel>
+      <app-savings-config-panel [amount]="goal.amount" [currency]="goal.currency" [months]="goal.months"
+        [startingMonth]="goal.startingMonth" [startingYear]="goal.startingYear" (config)="onConfig($event)"></app-savings-config-panel>
     </nav>
   </div>
 </div>
