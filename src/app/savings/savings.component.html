@@ -6,6 +6,19 @@
         <span class="title">Savings</span>
       </a>
     </div>
+    <div class="header-actions">
+      <clr-dropdown>
+        <button class="nav-icon" clrDropdownTrigger>
+          <clr-icon shape="cog"></clr-icon>
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+          <a href="/savings" target="_blank" clrDropdownItem>Create new...</a>
+          <div class="dropdown-divider"></div>
+          <a href="/" target="_blank" clrDropdownItem>visit tomakeornottomake.com</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
   </header>
   <div class="content-container">
     <div class="content-area" #top>
