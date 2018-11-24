@@ -11,6 +11,7 @@ import { Data } from './models/data.model';
 import { Goal } from './models/goal.model';
 import { Month } from './models/month.model';
 import { Months } from './models/months.model';
+import { SavingsDatagridComponent } from './savings-datagrid/savings-datagrid.component';
 import { SavingsService } from './services/savings.service';
 
 @Component({
@@ -20,7 +21,8 @@ import { SavingsService } from './services/savings.service';
 })
 export class SavingsComponent implements OnInit {
 
-  @ViewChild('contentAreaTop') contentAreaTopElement: ElementRef;
+  @ViewChild('contentAreaTop') contentAreaTop: ElementRef;
+  @ViewChild(SavingsDatagridComponent) datagrid: SavingsDatagridComponent;
 
   goal: Goal;
   months: Month[] = [];
@@ -65,6 +67,10 @@ export class SavingsComponent implements OnInit {
           this.messageType = 'alert-danger';
         }
       );
+  }
+
+  onShare() {
+    this.savingsService.saveImage(this.datagrid.gridElement);
   }
 
   private loadData() {
@@ -112,7 +118,7 @@ export class SavingsComponent implements OnInit {
   }
 
   private scrollContentAreaToTop() {
-    this.contentAreaTopElement.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    this.contentAreaTop.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
 }

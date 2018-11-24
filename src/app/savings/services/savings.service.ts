@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
+import { ElementRef, Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import domtoimage from 'dom-to-image';
+import { saveAs } from 'file-saver';
 import { from, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { Data } from '../models/data.model';
@@ -44,17 +46,24 @@ export class SavingsService {
       );
       const values: number[] = snapshot.get('values');
       const months: Month[] = Array(goal.months)
-      .fill(0)
-      .map((_, index) => {
-        const month = Months.values[(goal.startingMonth + index) % Months.values.length];
-        const year = goal.startingYear + Math.floor((goal.startingMonth + index) / Months.values.length);
-        const amount = values.length > index ? values[index] : null;
+        .fill(0)
+        .map((_, index) => {
+          const month = Months.values[(goal.startingMonth + index) % Months.values.length];
+          const year = goal.startingYear + Math.floor((goal.startingMonth + index) / Months.values.length);
+          const amount = values.length > index ? values[index] : null;
 
-        return new Month(`${month} ${year}`, amount);
-      });
+          return new Month(`${month} ${year}`, amount);
+        });
       return new Data(goal, months);
     }));
 
     return mapped;
+  }
+
+  saveImage(element: ElementRef) {
+    domtoimage.toBlob(element.nativeElement)
+      .then(blob => {
+        saveAs(blob, 'my-savings.png');
+      });
   }
 }

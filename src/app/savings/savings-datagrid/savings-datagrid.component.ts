@@ -1,9 +1,11 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnInit,
-  Output
+  Output,
+  ViewChild
   } from '@angular/core';
 import { Goal } from './../models/goal.model';
 import { Month } from './../models/month.model';
@@ -14,6 +16,8 @@ import { Month } from './../models/month.model';
   styleUrls: ['./savings-datagrid.component.scss']
 })
 export class SavingsDatagridComponent implements OnInit {
+
+  @ViewChild('grid', { read: ElementRef }) gridElement: ElementRef;
 
   @Input() goal: Goal;
   @Input() months: Month[];
