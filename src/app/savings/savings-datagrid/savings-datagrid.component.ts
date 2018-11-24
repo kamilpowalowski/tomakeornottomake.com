@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+  } from '@angular/core';
 import { Goal } from './../models/goal.model';
 import { Month } from './../models/month.model';
 
@@ -11,6 +17,8 @@ export class SavingsDatagridComponent implements OnInit {
 
   @Input() goal: Goal;
   @Input() months: Month[];
+
+  @Output() save = new EventEmitter<void>();
 
   constructor() { }
 
@@ -50,6 +58,10 @@ export class SavingsDatagridComponent implements OnInit {
     return this.months
       .map((month, index) => this.forcastedAmount(month, index))
       .reduce((sum, current) => sum + current);
+  }
+
+  onSubmit() {
+    this.save.emit();
   }
 
 }

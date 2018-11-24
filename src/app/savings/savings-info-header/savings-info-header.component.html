@@ -1,7 +1,13 @@
-<clr-alert [clrAlertClosable]=false [clrAlertType]="type">
-    <clr-alert-item>
-        <span class="alert-text">
-            {{ message }}
-        </span>
-    </clr-alert-item>
+<clr-alert [clrAlertClosable]=false>
+  <clr-alert-item>
+    <span class="alert-text">
+      Keep link to this page in bookmarks and don't share with anybody.
+    </span>
+  </clr-alert-item>
 </clr-alert>
+<clr-alert [clrAlertClosable]=false [clrAlertType]="type" *ngIf="message !== null">
+  <clr-alert-item>
+    <span class="alert-text" [innerHTML]="message"></span>
+  </clr-alert-item>
+</clr-alert>
+

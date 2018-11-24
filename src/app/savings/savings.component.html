@@ -8,13 +8,14 @@
     </div>
   </header>
   <div class="content-container">
-    <div class="content-area">
+    <div class="content-area" #top>
+      <div #contentAreaTop></div>
       <app-savings-info-header [message]="message" [type]="messageType"></app-savings-info-header>
-      <app-savings-datagrid [goal]="goal" [months]="months"></app-savings-datagrid>
+      <app-savings-datagrid [goal]="goal" [months]="months" (save)="onSave()"></app-savings-datagrid>
     </div>
     <nav class="sidenav">
       <app-savings-config-panel [amount]="goal.amount" [currency]="goal.currency" [months]="goal.months"
-        [startingMonth]="goal.startingMonth" [startingYear]="goal.startingYear" (config)="onConfig($event)"></app-savings-config-panel>
+        [startingMonth]="goal.startingMonth" [startingYear]="goal.startingYear" (config)="onConfigChange($event)"></app-savings-config-panel>
     </nav>
   </div>
 </div>

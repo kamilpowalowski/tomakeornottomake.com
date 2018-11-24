@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild
+  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { v4 as uuid } from 'uuid';
 import { Config } from './models/config.model';
+import { Data } from './models/data.model';
 import { Goal } from './models/goal.model';
 import { Month } from './models/month.model';
 import { Months } from './models/months.model';
@@ -14,10 +20,12 @@ import { SavingsService } from './services/savings.service';
 })
 export class SavingsComponent implements OnInit {
 
-  goal: Goal;
-  months: Month[];
+  @ViewChild('contentAreaTop') contentAreaTopElement: ElementRef;
 
-  message = 'Use side menu to configure your savings goal. Hit SAVE CHANGES when ready.';
+  goal: Goal;
+  months: Month[] = [];
+
+  message: string = null;
   messageType = 'alert-info';
 
 
@@ -29,34 +37,59 @@ export class SavingsComponent implements OnInit {
 
   ngOnInit() {
     if (this.route.snapshot.params['path'] === undefined) {
-      this.router.navigate(['savings', uuid()]);
-      return;
+      this.router.navigate(['/', 'savings', uuid()]);
     }
-    this.refreshConfig(Config.default());
+    this.refresh(Config.default());
+    this.loadData();
   }
 
-  onConfig(config: Config) {
+  onConfigChange(config: Config) {
+    this.refresh(config);
+    this.onSave();
+  }
 
-    this.refreshConfig(config);
+  onSave() {
+    this.scrollContentAreaToTop();
 
-    this.savingsService.update(
-      this.route.snapshot.params['path'],
-      this.goal,
-      this.months
-    )
+    this.message = 'Saving data...';
+    const data = new Data(this.goal, this.months);
+
+    this.savingsService.update(this.path(), data)
       .subscribe(
         () => {
-          this.message = 'Data saved. Keep link to this page in bookmarks and don\'t share with anybody.';
+          this.message = 'Data saved.';
           this.messageType = 'alert-info';
         },
-        (error) => {
+        error => {
           this.message = error;
           this.messageType = 'alert-danger';
         }
       );
   }
 
-  private refreshConfig(config: Config) {
+  private loadData() {
+    this.savingsService.load(this.path())
+      .subscribe(
+        data => {
+          if (data === null) {
+            this.message = 'Use side menu to configure your savings goal. Hit APPLY CHANGES when ready.';
+            return;
+          }
+          this.goal = data.goal;
+          this.months = data.months;
+        },
+        error => {
+          this.message = error;
+          this.messageType = 'alert-danger';
+        }
+      );
+  }
+
+  private path(): string {
+    return this.route.snapshot.params['path'];
+  }
+
+  private refresh(config: Config) {
     const startingMonth = config.startingMonth;
     const startingYear = config.startingYear;
 
@@ -73,8 +106,13 @@ export class SavingsComponent implements OnInit {
       .map((_, index) => {
         const month = Months.values[(startingMonth + index) % Months.values.length];
         const year = startingYear + Math.floor((startingMonth + index) / Months.values.length);
-        return new Month(`${month} ${year}`, null);
+        const amount = this.months.length > index ? this.months[index].amount : null;
+        return new Month(`${month} ${year}`, amount);
       });
+  }
+
+  private scrollContentAreaToTop() {
+    this.contentAreaTopElement.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
 }
